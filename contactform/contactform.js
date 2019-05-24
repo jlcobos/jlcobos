@@ -4,6 +4,8 @@ jQuery(document).ready(function($) {
   //Contact
   $('form.contactForm').submit(function(e) {
     e.preventDefault();
+    $('#ion-email-unread').show();
+
     var f = $(this).find('.form-group'),
       ferror = false,
       emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
@@ -96,7 +98,17 @@ jQuery(document).ready(function($) {
       action = 'https://script.google.com/macros/s/AKfycbxigUryRaMSLpNQu99yMzT4JJ6p4bIAHqGwI3psjwSRc2M7Vc0/exec';
     }
     console.log(str)
-    $.post(action, str).then(res => console.log(res));
+    $.post(action, str).then(({result}) => {
+      if (result == 'success') {
+        $("#sendmessage").addClass("show");
+        $("#errormessage").removeClass("show");
+        $('.contactForm').find("input, textarea").val("");
+      } else {
+        $("#sendmessage").removeClass("show");
+        $("#errormessage").addClass("show");
+        $('#errormessage').html(msg);
+      }
+    });
   });
 
 });
