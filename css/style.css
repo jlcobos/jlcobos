@@ -1613,7 +1613,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 @media (max-width: 768px) {
   .carousel-content {
-    margin-top: 200px;
+    margin-top: 150px;
   }
   .back-to-top {
     bottom: 15px;
